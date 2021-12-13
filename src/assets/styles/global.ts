@@ -9,6 +9,7 @@ export const GlobalStyle = createGlobalStyle`
         --text: #F6F6F6;
         --background: #353D40;
         --background-calculator: #000000;
+        --background-calculator-light: #D9D9D9;
     }
 
     * {
@@ -32,5 +33,10 @@ export const GlobalStyle = createGlobalStyle`
         background: var(--background);
         -webkit-font-smoothing: antialiased;
         color: var(--text);
+    }
+
+    body, input, button {
+        font-family: 'Inconsolata', monospace;
+        font-weight: 400;
     }
 `

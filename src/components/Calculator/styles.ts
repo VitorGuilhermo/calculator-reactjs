@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { darken } from 'polished';
 
 export const Container = styled.main`
     width: 100%;
@@ -11,7 +10,11 @@ export const Container = styled.main`
     justify-content:center;
 `
 
-export const Content = styled.div`
+interface DarkModeProps {
+    isActive: boolean;
+}
+
+export const Content = styled.div<DarkModeProps>`
     width: 25rem;
     height: 39rem;
     margin-top: 5rem;
@@ -19,8 +22,8 @@ export const Content = styled.div`
     border: 2px solid rgba(255, 255, 255, 0.3);
     border-radius: 0.25rem;
 
-    background: var(--background-calculator);
-
+    background: ${(props) => props.isActive ? 'var(--background-calculator)' : 'var(--background-calculator-light)'};
+    
     header{
         width: 100%;
         height: 3rem;
@@ -51,6 +54,11 @@ export const Content = styled.div`
                 z-indez: 100;-webkit-appearance: none;
             }
 
+            input:checked {
+                background: #A1A5A6;
+                border-radius: 1.5rem;
+            }
+
             input:checked ~ .box{
                 left: 60%;
                 background: var(--blue);
@@ -66,6 +74,13 @@ export const Content = styled.div`
                 transition: all 0.4s;
             }
             
+        }
+
+        span {
+            display: block;
+            width: 75%;
+            text-align: right;
+            color: ${(props) => props.isActive ? 'var(--text)' : '#000'};
         }
 
     }
@@ -87,7 +102,7 @@ export const Content = styled.div`
 
             font-size: 4rem;
             font-weight: 500;
-            color: var(--text);
+            color: ${(props) => props.isActive ? 'var(--text)' : '#000'};
         }
 
         div.keys {
@@ -113,6 +128,7 @@ export const Content = styled.div`
                     background: var(--grey);
                     color: var(--text);
                     font-size: 1.5rem;
+                    font-weight: 400;
 
                     cursor: pointer;
 
@@ -139,11 +155,12 @@ export const Content = styled.div`
                 button.btn-option {
                     background: var(--grey-light);
                     color: #000;
+                    font-weight: 500;
                 }
 
                 button.btn-operation {
-                    background: var(--orange);
-                    font-weight: 700;
+                    background: ${(props) => props.isActive ? 'var(--orange)' : 'var(--blue)'};
+                    font-weight: 600;
                 }
             }
         }
